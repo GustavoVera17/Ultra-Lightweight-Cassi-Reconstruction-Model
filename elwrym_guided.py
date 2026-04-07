@@ -96,7 +96,7 @@ class ELWRYM_Guided(nn.Module):
 if __name__ == "__main__":
     import time
     try:
-        from thop import profile
+        from thop import profile # type: ignore
         HAS_THOP = True
     except ImportError:
         HAS_THOP = False
