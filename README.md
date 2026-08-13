@@ -1,10 +1,10 @@
-# ELWRYM-ABAC: Reconstrucción Hiperespectral Ultra-Ligera (Dual-Branch) 🔬⚡
+# DSLAnet: Reconstrucción Hiperespectral Ultra-Ligera (Dual-Branch) 🔬⚡
 
 ![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white)
 ![Size](https://img.shields.io/badge/Size-0.3_MB-brightgreen?style=for-the-badge)
 ![Params](https://img.shields.io/badge/Parameters-78k-blue?style=for-the-badge)
 
-Este repositorio contiene la investigación y el código fuente de **ELWRYM-ABAC (Asymmetric Bidirectional Attention Convolution)**, una arquitectura de red neuronal ultra-ligera diseñada para la reconstrucción de imágenes hiperespectrales (HSI) a partir de mediciones compresivas de un solo disparo (CASSI).
+Este repositorio contiene la investigación y el código fuente de **DSLAnet (Asymmetric Bidirectional Attention Convolution)**, una arquitectura de red neuronal ultra-ligera diseñada para la reconstrucción de imágenes hiperespectrales (HSI) a partir de mediciones compresivas de un solo disparo (CASSI).
 
 ## 🎯 Objetivo de la Investigación
 
@@ -13,11 +13,11 @@ La reconstrucción hiperespectral tradicional sufre de tres problemas críticos:
 2. **Ceguera Espacial (Vidrio Esmerilado):** Los modelos tienden a converger en mínimos locales borrosos al intentar adivinar la geometría a partir de información espectral altamente dispersa.
 3. **Colapso de Homogeneización:** Al usar redes de múltiples ramas (Dual-Branch) simétricas, los tensores terminan copiando la misma información matemática, duplicando el gasto computacional sin aportar nuevos aprendizajes.
 
-**ELWRYM-ABAC** resuelve esto descartando la simetría. Al separar la física óptica de la geometría espacial y obligarlas a hablar distintos lenguajes matemáticos, logramos una reconstrucción física rigurosa con el **0.2% del peso** del Estado del Arte.
+**DSLAnet** resuelve esto descartando la simetría. Al separar la física óptica de la geometría espacial y obligarlas a hablar distintos lenguajes matemáticos, logramos una reconstrucción física rigurosa con el **0.2% del peso** del Estado del Arte.
 
 ---
 
-## 🧠 ¿Cómo funciona la Arquitectura ELWRYM-ABAC?
+## 🧠 ¿Cómo funciona la Arquitectura DSLAnet?
 
 El núcleo del modelo es una **Red de Atención Bidireccional Asimétrica**. En lugar de usar una sola arteria gigante o dos clones paralelos, dividimos el cerebro de la red en dos especialistas:
 
@@ -38,7 +38,7 @@ Para evitar el colapso de características, las ramas no se pasan tensores crudo
 
 ## ⚖️ El Tribunal Físico: Entrenamiento Auto-Supervisado
 
-ELWRYM-ABAC no memoriza imágenes; aprende descubriendo el único cubo 3D que respeta las leyes de la óptica para dos sensores distintos simultáneamente. El entrenamiento es 100% auto-supervisado mediante tres "Jueces" matemáticos:
+DSLAnet no memoriza imágenes; aprende descubriendo el único cubo 3D que respeta las leyes de la óptica para dos sensores distintos simultáneamente. El entrenamiento es 100% auto-supervisado mediante tres "Jueces" matemáticos:
 
 1. **Juez CASSI (Dispersión Óptica):** Pasa la salida 3D por un modelo físico del prisma (`ShiftForward`). Si la dispersión resultante no coincide con la foto cruda del sensor original, penaliza a la red.
 2. **Juez RGB (Sensibilidad Cuántica):** Aplasta el cubo 3D usando la Curva de Eficiencia Cuántica (CRF) de la cámara a color. **Aquí introducimos un multiplicador dinámico (λ = 15 ~ 25)**. Al darle un "megáfono" a este juez, vencemos la *Inanición de Gradientes* geométrica y forzamos a la red a esculpir bordes perfectos.
@@ -50,7 +50,7 @@ ELWRYM-ABAC no memoriza imágenes; aprende descubriendo el único cubo 3D que re
 
 Comparativa estimada en el dataset CAVE frente a arquitecturas líderes en reconstrucción de CASSI de un solo disparo:
 
-| Métrica / Arquitectura | **ELWRYM-ABAC (Propuesto)** | SIR-CNN W32 (Xie et al.) | SCAB (Yamawaki et al.) |
+| Métrica / Arquitectura | **DSLAnet (Propuesto)** | SIR-CNN W32 (Xie et al.) | SCAB (Yamawaki et al.) |
 | :--- | :--- | :--- | :--- |
 | **Peso en Disco (MB)** | **~0.3 MB** 🏆 | ~110.0 MB | ~5.0 MB |
 | **Parámetros** | **~78,000** 🏆 | ~28,000,000 | ~1,200,000 |
@@ -58,7 +58,7 @@ Comparativa estimada en el dataset CAVE frente a arquitecturas líderes en recon
 | **Fidelidad Espacial (SSIM)** | **> 0.50** | ~ 0.75 | ~ 0.65 |
 | **Error Espectral (SAM)** | **~ 30°** | ~ 25° | ~ 35° |
 
-**Conclusión:** ELWRYM-ABAC logra un rendimiento estructural altamente competitivo y fidelidad química de nivel científico, **utilizando menos del 0.3% del costo computacional y de memoria** de los modelos estándar. Su diseño lo hace ideal para aplicaciones en tiempo real, drones, satélites y hardware embebido (IoT).
+**Conclusión:** DSLAnet logra un rendimiento estructural altamente competitivo y fidelidad química de nivel científico, **utilizando menos del 0.3% del costo computacional y de memoria** de los modelos estándar. Su diseño lo hace ideal para aplicaciones en tiempo real, drones, satélites y hardware embebido (IoT).
 
 ---
 
