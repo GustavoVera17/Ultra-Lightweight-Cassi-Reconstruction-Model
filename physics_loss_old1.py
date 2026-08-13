@@ -68,18 +68,19 @@ class SelfSupervisedLoss(nn.Module):
         super(SelfSupervisedLoss, self).__init__()
         self.physics = CASSiPhysics(mask_tensor, crf_np)
         
-    def forward(self, pred_cube, cassi_real, rgb_real):
+    def forward(self, pred_cube, cassi_real, rgb_real, epoca_actual=1, max_epochs=1200):
         cassi_simulado = self.physics.shift_forward(pred_cube)
         loss_cassi = F.mse_loss(cassi_simulado, cassi_real)
         
         rgb_simulado = self.physics.project_rgb(pred_cube)
         loss_rgb = F.mse_loss(rgb_simulado, rgb_real)
         
-        # ⚠️ EL CAMBIO: Le damos un megáfono de x10 o x50 al Juez de Color
-        lambda_color = 20.0 
+        # Decaimiento de Lambda (Annealing): Empieza en 20.0 y baja hasta 1.0
+        lambda_inicial = 20.0
+        lambda_final = 1.0
+        progreso = min(1.0, max(0.0, (epoca_actual - 1) / max(1, max_epochs - 1)))
+        lambda_color = lambda_inicial - progreso * (lambda_inicial - lambda_final)
+        
         loss_total = loss_cassi + (lambda_color * loss_rgb)
         
         return loss_total, loss_cassi, loss_rgb
-        
-        # Podríamos ponderarlas, pero Xie suele tratarlas igual.
-        return loss_cassi + loss_rgb, loss_cassi, loss_rgb

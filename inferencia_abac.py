@@ -8,7 +8,7 @@ from skimage.metrics import structural_similarity as ssim_metric
 # Importamos nuestros módulos del ecosistema ABAC
 from dataset_dual import CASSIDualDataset
 from elwrym_abac import ELWRYM_ABAC
-from physics_loss import CASSiPhysics
+from physics_loss_old1 import CASSiPhysics
 from metricas import calcular_psnr, calcular_sam
 
 def calcular_ssim(pred, target):
@@ -26,10 +26,10 @@ def main():
     # =========================================================================
     
     # Ruta del modelo .pth que generaste (Asegúrate que apunte a la carpeta correcta)
-    RUTA_MODELO_PTH = r"checkpoints_elwrym\mejor_modelo.pth"
+    RUTA_MODELO_PTH = r"C:\CODE2026\CASSIproy2026\CASSIproy2026\Prueba1_CASSIREC\Resultados_UltraLightweight\pesos\mejor_modelo.pth"
     
     # Ruta exacta de la carpeta de la imagen de prueba CAVE
-    RUTA_CARPETA_IMAGEN = r"C:\CODE2026\CASSIproy2026\CASSIproy2026\Xie_Rep\dataset\fortest\fake_and_real_food_ms"
+    RUTA_CARPETA_IMAGEN = r"C:\CODE2026\CASSIproy2026\CASSIproy2026\Xie_Rep\dataset\fortest\face_ms"
 
     # =========================================================================
 

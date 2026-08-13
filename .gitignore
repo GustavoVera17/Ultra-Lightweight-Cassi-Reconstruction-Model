@@ -30,3 +30,6 @@ Thumbs.db
 !Resultados/**/*.png
 !Resultados/**/*.zip
 !Resultados/**/*.pth
+
+# Ignorar resultados completos del modelo ultraligero
+Resultados_UltraLightweight/
