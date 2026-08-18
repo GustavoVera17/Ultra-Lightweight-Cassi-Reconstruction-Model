@@ -59,11 +59,3 @@ Comparativa estimada en el dataset CAVE frente a arquitecturas líderes en recon
 | **Error Espectral (SAM)** | **~ 30°** | ~ 25° | ~ 35° |
 
 **Conclusión:** DSLAnet logra un rendimiento estructural altamente competitivo y fidelidad química de nivel científico, **utilizando menos del 0.3% del costo computacional y de memoria** de los modelos estándar. Su diseño lo hace ideal para aplicaciones en tiempo real, drones, satélites y hardware embebido (IoT).
-
----
-
-## 👨‍🔬 Reconocimientos
-
-Esta arquitectura y metodología de entrenamiento fueron desarrolladas y experimentadas iterativamente por **Gustavo Vera**. 
-
-El diseño matemático, la refutación de hipótesis topológicas, la optimización de los túneles de atención (ABAC) y la ingeniería de *Losses* Físicos fueron concebidos en co-autoría conceptual con **Gemini (Google AI)**, actuando como arquitecto computacional de apoyo durante la investigación de este proyecto (2026).
